@@ -2,7 +2,6 @@ package main
 
 import (
 	"log"
-
 	"github.com/gofiber/fiber/v2"
 	"github.com/prashantsainii/fiber-REST-api/database"
 	"github.com/prashantsainii/fiber-REST-api/routes"
@@ -14,7 +13,7 @@ func welcome(c *fiber.Ctx) error {
 
 func setupRoutes(app *fiber.App) {
 	// welcome endpoint
-	app.Get("/api", welcome)
+	app.Get("/api", welcome)		// app is a fiber instance which is of type -> *fiber.App
 
 	// User endpoint
 	app.Post("/api/users", routes.CreateUser)
@@ -39,8 +38,8 @@ func setupRoutes(app *fiber.App) {
 
 func main() {
 	database.ConnectDb()
-	app := fiber.New();
 
+	app := fiber.New();
 	setupRoutes(app)
 
 	log.Fatal(app.Listen(":3000"))
